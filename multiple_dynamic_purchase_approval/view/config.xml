@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="komisi_config_settings_limit_list" model="ir.ui.view">
+        <field name="name">komisi settings limit list</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase" />
+        <field name="priority" eval="25"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-string='Purchase']/div[1]/div[1]/div[2]/div[hasclass('text-muted')]" position="replace" >
+                <div class="text-muted">
+                    Select The Group who can Approve purchase and set The limit. Using negatif value for Unlimited.
+                </div>
+            </xpath>
+            <xpath expr="//div[@data-string='Purchase']/div[1]/div[1]/div[2]/div[hasclass('content-group')]" position="replace" >
+                <div class="content-group" attrs="{'invisible': [('po_order_approval', '=', False)]}">
+                    <field name="limit_list" attrs="{'required': [('po_order_approval', '=', True)]}" style="min-width:100%;" >
+                        <tree editable='bottom' >
+                            <field name="name" />
+                            <field name="limit" />
+                            <field name="company_currency_id" invisible='1' />
+                        </tree>
+                    </field>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
